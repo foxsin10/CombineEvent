@@ -1,10 +1,5 @@
-
 import Combine
-import Foundation
-
-#if canImport(UIKit)
 import UIKit
-#endif
 
 extension Publishers {
     public struct ControlEventPublisher<Control: UIControl>: Publisher {
@@ -51,38 +46,5 @@ extension Publishers {
         @objc private func eventHandler() {
             _ = subscriber?.receive(control)
         }
-    }
-}
-
-/// Extending the `UIControl` types to be able to produce a `UIControl.Event` publisher.
-public protocol CombineCompatible {}
-extension UIControl: CombineCompatible {}
-
-extension CombineCompatible where Self: UIControl {
-    public func publisher(on events: UIControl.Event) -> Publishers.ControlEventPublisher<Self> {
-        return Publishers.ControlEventPublisher(control: self, events: events)
-    }
-
-    public func publisher<Value>(
-        for keyPath: KeyPath<Self, Value>,
-        on events: UIControl.Event
-    ) -> AnyPublisher<Value, Never> {
-        Publishers.ControlEventPublisher(control: self, events: events)
-            .map(keyPath)
-            .eraseToAnyPublisher()
-    }
-}
-
-extension CombineCompatible where Self: UITextField {
-    public func text() -> AnyPublisher<String, Never> {
-        self.publisher(for: \.text, on: [.allEditingEvents])
-            .compactMap { $0 }
-            .eraseToAnyPublisher()
-    }
-
-    public func attributedString() -> AnyPublisher<NSAttributedString, Never> {
-        publisher(for: \.attributedText, on: [.allEditingEvents])
-            .compactMap { $0 }
-            .eraseToAnyPublisher()
     }
 }
