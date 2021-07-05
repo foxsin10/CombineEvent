@@ -79,4 +79,10 @@ extension CombineCompatible where Self: UITextField {
             .compactMap { $0 }
             .eraseToAnyPublisher()
     }
+
+    public func attributedString() -> AnyPublisher<NSAttributedString, Never> {
+        publisher(for: \.attributedText, on: [.allEditingEvents])
+            .compactMap { $0 }
+            .eraseToAnyPublisher()
+    }
 }
