@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
     s.name         = "CombineEvent"
-    s.version      = "0.4.0"
+    s.version      = "0.5.0"
     s.summary      = "convenience wrapper api when using combine"
   
     s.description  = <<-DESC
@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
     s.authors            = { "foxsion10" => "yzjcnn@gmail.com" }
     s.social_media_url   = "https://github.com/foxsin10"
   
-    s.swift_versions = ['5.4']
+    s.swift_versions = ['5.3']
   
     s.ios.deployment_target = "13.0"
   
