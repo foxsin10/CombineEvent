@@ -15,3 +15,11 @@ extension CombineCompatible where Self: UIControl {
             .eraseToAnyPublisher()
     }
 }
+
+extension CombineCompatible where Self: UIButton {
+    public func tap() -> AnyPublisher<Void, Never> {
+        publisher(on: .touchUpInside)
+            .map { _ in () }
+            .eraseToAnyPublisher()
+    }
+}
