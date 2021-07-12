@@ -1,7 +1,7 @@
 import Combine
 import UIKit
 
-extension CombineCompatible where Self: UITextField {
+extension Combine where Base: UITextField {
     public func textPublisher() -> AnyPublisher<String, Never> {
         self.publisher(for: \.text, on: [.allEditingEvents])
             .compactMap { $0 }

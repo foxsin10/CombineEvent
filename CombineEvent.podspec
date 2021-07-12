@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
     s.name         = "CombineEvent"
-    s.version      = "0.5.1"
+    s.version      = "1.0.0"
     s.summary      = "convenience wrapper api when using combine"
   
     s.description  = <<-DESC
